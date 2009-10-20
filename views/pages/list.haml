@@ -1,0 +1,5 @@
+#pages
+  %ul.pages
+    - for page in @pages
+      %li
+        %a{ :href => "/pages/#{page[:_id]}" }= page[:title]

@@ -1,0 +1,2 @@
+require 'tasksoup'
+run TaskSoup
