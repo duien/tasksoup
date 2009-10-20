@@ -17,8 +17,8 @@ ul
     :width = 85%
     .content
       :padding 10px
-      .task
-        :clear both
+      .task, .note
+        :clear left
         .status
           :float left
           :font-family monospace
@@ -26,10 +26,12 @@ ul
           :padding 0 3px
           :margin-right 3px
           :margin-top 3px
+          :width 5em
+          :text-align right
         .text
           :float left
-      #add-form
-        :clear both
+      #add-content-form
+        :clear left
 #footer
   :clear both
   :padding 10px
@@ -83,10 +85,10 @@ h2
   :color #597ba6
 
 .done, .fixed
-  .item_text
+  .text
     :color #999999
     :text-decoration line-through
 .cancel, .answer, .invalid
-  .item_text
+  .text
     :color #999999
     :font-style italic

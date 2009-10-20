@@ -1,4 +1,6 @@
-%form{ :name => 'note', :action => "/pages/#{page_id}/contents/new", :id => 'note_form', :method => 'post' }
+%form{ :name => 'note', :action => "/pages/#{short_name}/contents/new", :id => 'note_form', :method => 'post' }
   %input{ :type => 'hidden', :name => 'type', :value => 'note' }
-  %input{ :name => 'note[text]', :type => 'text', :id => 'note[text]' }
+  %input{ :name => 'note[text]', :type => 'text', :id => 'note_text' }
   %input{ :type => 'submit', :value => 'Add', :id => 'note_submit' }
+  %input{ :type => 'button', :value => 'Expand', :id => 'note_expand' }
+  %input{ :type => 'button', :value => 'Cancel', :id => 'note_cancel' }

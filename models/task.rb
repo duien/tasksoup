@@ -8,4 +8,8 @@ class Task < Content
   # many :contents, :polymorphic => true
   # single level for now
 
+  def self.statuses
+    STATUSES
+  end
+
 end

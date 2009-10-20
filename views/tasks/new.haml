@@ -1,7 +1,9 @@
-%form{ :name => 'task', :action => "/pages/#{page_id}/contents/new", :id => 'task_form', :method => 'post' }
+%form{ :name => 'task', :action => "/pages/#{short_name}/contents/new", :id => 'task_form', :method => 'post' }
   %input{ :type => 'hidden', :name => 'type', :value => 'task' }
-  %select{ :name => 'task[status]', :id => 'task[status]' }
-    - for status in Task.STATUSES
-      %option{ :value => status, :label => status }
-  %input{ :name => 'task[text]', :type => 'text', :id => 'task[text]' }
+  %select{ :name => 'task[status]', :id => 'task_status' }
+    - for status in statuses
+      %option= status
+  %input{ :name => 'task[text]', :type => 'text', :id => 'task_text' }
   %input{ :type => 'submit', :value => 'Add', :id => 'task_submit' }
+  %input{ :type => 'button', :value => 'Expand', :id => 'task_expand' }
+  %input{ :type => 'button', :value => 'Cancel', :id => 'task_cancel' }

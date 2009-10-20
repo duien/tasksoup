@@ -2,6 +2,6 @@
 %ul
   - for content in @page.contents
     = haml_for content
-#add-form
+#add-content-form
   %a{ :onClick => "add_and_bind_form($(this).parent(), \"#{@page.short_name}\", \"note\");" } +note
   %a{ :onClick => "add_and_bind_form($(this).parent(), \"#{@page.short_name}\", \"task\");" } +task

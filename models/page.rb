@@ -12,7 +12,7 @@ class Page
   # Methods
   before_validation do |page|
     if page.short_name.nil? and not page.title.nil?
-      page.short_name = page.title.underscore
+      page.short_name = page.title.underscore.gsub( /\s/, '_' )
     end
   end
 
