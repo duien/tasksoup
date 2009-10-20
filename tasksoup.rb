@@ -15,8 +15,15 @@ class TaskSoup < Sinatra::Base
   end
 
   get '/pages/?' do
+    layout = params[:embed].nil? ? true : false
     @pages = Page.find( :all )
-    haml :'pages/list'
+    haml :'pages/list', :layout => layout
+  end
+
+  get '/pages/:short_name' do |short_name|
+    layout = params[:embed].nil? ? true : false
+    @page = Page.find_by_short_name( short_name )
+    haml :'pages/show', :layout => layout
   end
 
   # css
