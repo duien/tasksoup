@@ -1,0 +1,7 @@
+%form{ :name => 'task', :action => "/pages/#{page_id}/contents/new", :id => 'task_form', :method => 'post' }
+  %input{ :type => 'hidden', :name => 'type', :value => 'task' }
+  %select{ :name => 'task[status]', :id => 'task[status]' }
+    - for status in Task.STATUSES
+      %option{ :value => status, :label => status }
+  %input{ :name => 'task[text]', :type => 'text', :id => 'task[text]' }
+  %input{ :type => 'submit', :value => 'Add', :id => 'task_submit' }

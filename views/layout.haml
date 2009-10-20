@@ -6,4 +6,13 @@
   %script{ :type => 'text/javascript', :src=> '/scripts/jquery.form.js' }
   %script{ :type => 'text/javascript', :src=> '/scripts/script.js' }
 %body
-  = yield
+  #header
+    %h1 TaskSoup
+  #body
+    #sidebar
+      .content
+    #main
+      .content
+        = yield
+  #footer
+    %p That's all!

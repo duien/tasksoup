@@ -2,4 +2,4 @@
   %ul.pages
     - for page in @pages
       %li
-        %a{ :href => "/pages/#{page[:_id]}" }= page[:title]
+        %a{ :href => "/pages/#{page.short_name}" }= page.title

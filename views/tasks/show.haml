@@ -1,3 +1,5 @@
-%li.task
-  %span.status= status
-  = text
+%li.task{ :class => task.status }
+  .status= task.status
+  .text
+    :maruku
+      #{task.text}

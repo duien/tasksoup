@@ -1,2 +1,92 @@
-h1
+body, div, p, ul, li, h1, h2, h3, h4, h5, h6
+  :margin 0
+  :padding 0
+ul
+  :list-style-type none
+#header
+  :padding 10px
+  :border-bottom 3px solid #999
+  :color #999
+#body
+  #sidebar
+    :float right
+    :width 15%
+    .content
+      :padding 10px
+  #main
+    :width = 85%
+    .content
+      :padding 10px
+      .task
+        :clear both
+        .status
+          :float left
+          :font-family monospace
+          :font-weight bold
+          :padding 0 3px
+          :margin-right 3px
+          :margin-top 3px
+        .text
+          :float left
+      #add-form
+        :clear both
+#footer
+  :clear both
+  :padding 10px
+  :border-top 3px solid #999
+  :color #999
+
+h2
   :border-bottom 3px solid black
+
+
+
+/*********************/
+/* Task List Styling */
+/*********************/
+
+.todo .status
+  :background #d74d3d
+  :color #ffffff
+.later .status
+  :background #f0c76f
+  :color #000000
+.cancel .status
+  :background #ffffff
+  :color #999999
+.waiting .status
+  :background #999999
+  :color #ffffff
+.done .status
+  :background #ffffff
+  :color #999999
+.bug .status
+  :background #519650
+  :color #ffffff
+.smell .status
+  :background #a4c262
+  :color #ffffff
+.report .status
+  :background #a4c262
+  :color #ffffff
+.fixed .status
+  :background #ffffff
+  :color #519650
+.invalid .status
+  :background #ffffff
+  :color #a4c262
+.question .status
+  :background #597ba6
+  :color #ffffff
+.answer .status
+  :background #ffffff
+  :color #597ba6
+
+.done, .fixed
+  .item_text
+    :color #999999
+    :text-decoration line-through
+.cancel, .answer, .invalid
+  .item_text
+    :color #999999
+    :font-style italic

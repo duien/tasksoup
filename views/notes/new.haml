@@ -1,5 +1,4 @@
 %form{ :name => 'note', :action => "/pages/#{page_id}/contents/new", :id => 'note_form', :method => 'post' }
   %input{ :type => 'hidden', :name => 'type', :value => 'note' }
-  %label{ :for => 'note[text]' } Text
   %input{ :name => 'note[text]', :type => 'text', :id => 'note[text]' }
   %input{ :type => 'submit', :value => 'Add', :id => 'note_submit' }
