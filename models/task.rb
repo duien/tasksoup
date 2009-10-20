@@ -1,5 +1,4 @@
-class Task
-  include MongoMapper::EmbeddedDocument
+class Task < Content
 
   STATUSES = ['todo', 'later', 'waiting', 'done', 'cancel', 'report', 'smell', 'bug', 'fixed', 'invalid', 'question', 'answer']
   # Attributes

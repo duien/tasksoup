@@ -3,7 +3,7 @@ class Content
 
   key :text, String, :required => true
   key :tags, Array
-  key :_type
   key :created_at, Time
+  key :_type
 
 end
