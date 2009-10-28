@@ -1,5 +1,4 @@
 %form{ :name => 'task', :action => "/pages/#{short_name}/contents/new", :id => 'task_form', :method => 'post' }
-  %input{ :type => 'hidden', :name => 'type', :value => 'task' }
   %select{ :name => 'task[status]', :id => 'task_status' }
     - for status in statuses
       %option= status

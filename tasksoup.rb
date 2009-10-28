@@ -39,42 +39,22 @@ class TaskSoup < Sinatra::Base
     haml :'pages/show', :layout => layout
   end
 
-  get '/pages/:short_name/contents/new' do |short_name|
+  get '/pages/:short_name/tasks/new' do |short_name|
     layout = params[:embed].nil? ? true : false
-    case params[:type]
-    when 'note'
-      haml :'notes/new', :layout => layout, :locals => { :note => Note.new, :short_name => short_name }
-    when 'task'
-      haml :'tasks/new', :layout => layout, :locals => { :task => Task.new, :short_name => short_name, :statuses => Task.statuses }
-    end
+    haml :'tasks/new', :layout => layout, :locals => { :task => Task.new, :short_name => short_name, :statuses => Task.statuses }
   end
 
-  post '/pages/:short_name/contents/new' do |short_name|
+  post '/pages/:short_name/tasks/new' do |short_name|
     @page = Page.find_by_short_name( short_name )
-    case params[:type]
-    when 'note'
-      @page.contents << Note.new( params[:note] )
-      success = @page.save
-      haml :'pages/show', :layout => false
-    when 'task'
-      @page.contents << Task.new( params[:task] )
-      success = @page.save
-      haml :'pages/show', :layout => false
-    end
+    @page.tasks << Task.new( params[:task] )
+    success = @page.save
+    haml :'pages/show', :layout => false
   end
 
   # css
   get '/:style.css' do |style|
     content_type 'text/css'
     sass style.to_sym
-  end
-
-
-  # helpers
-  def haml_for( object )
-    object_template = "#{object.class.to_s.tableize}/show".to_sym
-    object_singular = object.class.to_s.underscore.to_sym
-    haml object_template, :layout => false, :locals => { object_singular => object }
   end
 
 end

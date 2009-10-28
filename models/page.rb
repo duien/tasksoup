@@ -7,7 +7,7 @@ class Page
   key :short_name, String, :unique => true, :required => true
   
   # Associations
-  many :contents, :polymorphic => true
+  many :tasks
 
   # Methods
   before_validation do |page|
