@@ -1,6 +1,6 @@
 class Task < Content
 
-  STATUSES = ['todo', 'later', 'waiting', 'done', 'cancel', 'report', 'smell', 'bug', 'fixed', 'invalid', 'question', 'answer']
+  STATUSES = ['todo', 'later', 'waiting', 'done', 'cancel', 'report', 'smell', 'bug', 'fixed', 'invalid', 'question', 'answer', 'note']
   # Attributes
   key :status, String, :required => true, :within => STATUSES
 
