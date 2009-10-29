@@ -1,4 +1,4 @@
-class Page
+class Project
   include MongoMapper::Document
 
   # Attributes
@@ -10,9 +10,9 @@ class Page
   many :tasks
 
   # Methods
-  before_validation do |page|
-    if page.short_name.nil? and not page.title.nil?
-      page.short_name = page.title.underscore.gsub( /\s/, '_' )
+  before_validation do |project|
+    if project.short_name.nil? and not project.title.nil?
+      project.short_name = project.title.underscore.gsub( /\s/, '_' )
     end
   end
 

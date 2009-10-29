@@ -1,4 +1,4 @@
-%form{ :name => 'task', :action => "/pages/#{short_name}/tasks/new", :id => 'task_form', :method => 'post' }
+%form{ :name => 'task', :action => "/projects/#{short_name}/tasks/new", :id => 'task_form', :method => 'post' }
   %select{ :name => 'task[status]', :id => 'task_status' }
     - for chain_name, chain_statuses in statuses
       %optgroup{ :label =>  chain_name }

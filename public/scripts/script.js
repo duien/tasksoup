@@ -1,9 +1,9 @@
 $(function(){
-  $("#sidebar .content").load("/pages?embed=true");
+  $("#sidebar .content").load("/projects?embed=true");
 });
 
-function add_and_bind_form( to, page_id ) {
-  to.load("/pages/" + page_id + "/tasks/new?embed=true", function() { 
+function add_and_bind_form( to, project_id ) {
+  to.load("/projects/" + project_id + "/tasks/new?embed=true", function() { 
     $(this).find("form").ajaxForm({ success: function(data, textStatus){
       $("#main .content").html( data );
     }});
@@ -16,8 +16,8 @@ function add_and_bind_form( to, page_id ) {
   });
 };
 
-function add_and_bind_page_form( to ) {
-  to.load("/pages/new?embed=true", function() { 
+function add_and_bind_project_form( to ) {
+  to.load("/projects/new?embed=true", function() { 
     $(this).find("form").ajaxForm({ success: function(data, textStatus){
       // alert( data + "..." + textStatus );
       $("#sidebar .content").html( data );

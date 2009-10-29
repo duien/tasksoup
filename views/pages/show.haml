@@ -1,6 +1,0 @@
-%h2= @page.title
-%ul
-  - for task in @page.tasks
-    = haml :'tasks/show', :layout => false, :locals => { :task => task }
-#add-task-form
-  %a{ :onClick => "add_and_bind_form($(this).parent(), \"#{@page.short_name}\");" } +new

@@ -15,40 +15,40 @@ class TaskSoup < Sinatra::Base
     MongoMapper.database = 'tasksoup_dev'
   end
 
-  get '/pages/?' do
+  get '/projects/?' do
     layout = params[:embed].nil? ? true : false
-    @pages = Page.find( :all )
-    haml :'pages/list', :layout => layout
+    @projects = Project.find( :all )
+    haml :'projects/list', :layout => layout
   end
 
-  get '/pages/new' do
+  get '/projects/new' do
     layout = params[:embed].nil? ? true : false
-    haml :'pages/new', :layout => layout
+    haml :'projects/new', :layout => layout
   end
 
-  post '/pages/new' do
-    @page = Page.new( params[:page] )
-    success = @page.save
-    @pages = Page.find( :all )
-    haml :'pages/list', :layout => false
+  post '/projects/new' do
+    @project = Project.new( params[:project] )
+    success = @project.save
+    @projects = Project.find( :all )
+    haml :'projects/list', :layout => false
   end
 
-  get '/pages/:short_name' do |short_name|
+  get '/projects/:short_name' do |short_name|
     layout = params[:embed].nil? ? true : false
-    @page = Page.find_by_short_name( short_name )
-    haml :'pages/show', :layout => layout
+    @project = Project.find_by_short_name( short_name )
+    haml :'projects/show', :layout => layout
   end
 
-  get '/pages/:short_name/tasks/new' do |short_name|
+  get '/projects/:short_name/tasks/new' do |short_name|
     layout = params[:embed].nil? ? true : false
     haml :'tasks/new', :layout => layout, :locals => { :task => Task.new, :short_name => short_name, :statuses => Task.chained_statuses }
   end
 
-  post '/pages/:short_name/tasks/new' do |short_name|
-    @page = Page.find_by_short_name( short_name )
-    @page.tasks << Task.new( params[:task] )
-    success = @page.save
-    haml :'pages/show', :layout => false
+  post '/projects/:short_name/tasks/new' do |short_name|
+    @project = Project.find_by_short_name( short_name )
+    @project.tasks << Task.new( params[:task] )
+    success = @project.save
+    haml :'projects/show', :layout => false
   end
 
   # css

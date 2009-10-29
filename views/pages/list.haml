@@ -1,7 +1,0 @@
-#pages
-  %ul.pages
-    - for page in @pages
-      %li
-        %a{ :href => "/pages/#{page.short_name}" }= page.title
-  #add-page-form
-    %a{ :onClick => "add_and_bind_page_form($(this).parent());" } +page
