@@ -10,10 +10,15 @@
     %h1 TaskSoup
     #tabs
       %ul
-        %li chain
-        %li status
-        %Li project
-    #filters
+        %li
+          %a{ :href => 'foo' } chain
+        %li
+          %a{ :href => 'foo' } status
+        %li.current
+          %a{ :href => 'foo' } project
+    .clear
+  #filters
+    .content
       %p something
   #body
     #sidebar

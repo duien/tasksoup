@@ -1,4 +1,4 @@
-%h2= @page.title
+-# %h2= @page.title
 %ul
   - for task in @page.tasks
     = haml :'tasks/show', :layout => false, :locals => { :task => task }

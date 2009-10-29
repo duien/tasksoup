@@ -5,8 +5,38 @@ ul
   :list-style-type none
 #header
   :padding 10px
+  // :border-bottom 3px solid #999
+    :color #999
   :border-bottom 3px solid #999
-  :color #999
+  :padding-bottom 0
+  #tabs
+    li
+      :display block
+      :float right
+      :border 3px solid #999
+      :border-bottom none
+      :margin 0 10px
+      :position relative
+      :top 3px
+      a
+        :display block
+        :padding 3px 10px 6px
+        &:hover
+          :background #999
+          :color white
+      &.current
+        // :margin-bottom -3px
+        :background #ccc 
+    :clear both
+    :margin-right 20px
+  .clear
+    :clear both
+#filters
+  :clear both
+  :border-bottom 3px solid #999
+  :background #ccc
+  .content
+    :padding 5px
 #body
   #sidebar
     :float right
