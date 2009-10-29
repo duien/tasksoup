@@ -14,6 +14,11 @@ class TaskSoup < Sinatra::Base
   configure do
     MongoMapper.database = 'tasksoup_dev'
   end
+  
+  get '/?' do
+    @page = Page.find_by_short_name( 'welcome' )
+    haml :'pages/show', :layout => :new_layout
+  end
 
   get '/pages/?' do
     layout = params[:embed].nil? ? true : false
