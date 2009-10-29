@@ -1,7 +1,9 @@
 %form{ :name => 'task', :action => "/pages/#{short_name}/tasks/new", :id => 'task_form', :method => 'post' }
   %select{ :name => 'task[status]', :id => 'task_status' }
-    - for status in statuses
-      %option= status
+    - for chain_name, chain_statuses in statuses
+      %optgroup{ :label =>  chain_name }
+        - for status in chain_statuses
+          %option= status
   %input{ :name => 'task[text]', :type => 'text', :id => 'task_text' }
   %input{ :type => 'submit', :value => 'Add', :id => 'task_submit' }
   %input{ :type => 'button', :value => 'Expand', :id => 'task_expand' }
