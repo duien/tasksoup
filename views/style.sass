@@ -3,6 +3,8 @@ body, div, p, ul, li, h1, h2, h3, h4, h5, h6
   :padding 0
 ul
   :list-style-type none
+.add_link
+  :cursor pointer
 #header
   :padding 10px
   :border-bottom 3px solid #999
@@ -35,8 +37,10 @@ ul
             :-webkit-border-radius 2px
           .text
             :float left
-      #add-task-form
+      #add-task
         :clear left
+        #add-task-form
+          :display none
 #footer
   :clear both
   :padding 10px

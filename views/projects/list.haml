@@ -4,4 +4,4 @@
       %li
         %a{ :href => "/projects/#{project.short_name}" }= project.title
   #add-project-form
-    %a{ :onClick => "add_and_bind_project_form($(this).parent());" } +project
+    %a.add_link{ :onClick => "add_and_bind_project_form($(this).parent());" } +project

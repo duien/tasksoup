@@ -2,5 +2,6 @@
 %ul.task_list
   - for task in @project.tasks
     = haml :'tasks/show', :layout => false, :locals => { :task => task }
-#add-task-form
-  %a{ :onClick => "add_and_bind_form($(this).parent(), \"#{@project.short_name}\");" } +new
+#add-task
+  %a.add_link{ :onClick => "add_and_bind_form($(this).siblings('#add-task-form'), \"#{@project.short_name}\");" } +new
+  #add-task-form
