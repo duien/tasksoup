@@ -36,6 +36,7 @@ class TaskSoup < Sinatra::Base
   get '/projects/:short_name' do |short_name|
     layout = params[:embed].nil? ? true : false
     @project = Project.find_by_short_name( short_name )
+    @title = "TaskSoup / #{@project.title}"
     haml :'projects/show', :layout => layout
   end
 

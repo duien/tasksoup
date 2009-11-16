@@ -7,7 +7,7 @@
   %script{ :type => 'text/javascript', :src=> '/scripts/script.js' }
 %body
   #header
-    %h1 TaskSoup
+    %h1= @title || "TaskSoup"
   #body
     #sidebar
       .content
