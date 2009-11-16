@@ -1,5 +1,5 @@
 class Task
-  include MongoMapper::EmbeddedDocument
+  include MongoMapper::Document
 
   STATUSES = {
     'todo'     => { :chain => 'task', :type =>   'active', :position => 2 },
@@ -26,6 +26,14 @@ class Task
   key :created_at, Time
   key :status, String, :required => true, :within => STATUSES.keys
   
+  # Association keys
+  key :parent_id, Mongo::ObjectID
+  key :parent_type
+  
+  #Associations
+  belongs_to :parent, :polymorphic => true
+  many :tasks, :as => :parent
+
   # All possible task statuses
   def self.statuses( options = {} )
     chain = options.delete( :chain )
@@ -44,6 +52,10 @@ class Task
 
   def self.chained_statuses
     
+  end
+  
+  def project
+    parent_type == 'Project' ? parent : parent.project
   end
 
 end

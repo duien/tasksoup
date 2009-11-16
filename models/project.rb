@@ -7,7 +7,7 @@ class Project
   key :short_name, String, :unique => true, :required => true
   
   # Associations
-  many :tasks
+  many :tasks, :as => :parent
 
   # Methods
   before_validation do |project|

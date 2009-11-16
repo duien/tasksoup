@@ -1,4 +1,5 @@
 require 'sinatra/base'
+gem 'mongo_mapper', '~> 0.6.0'
 require 'mongo_mapper'
 require 'haml'
 require 'sass'
