@@ -39,4 +39,15 @@ describe Task do
       Task.statuses(:type => 'inactive', :chain => 'question').first.should == 'answer'
     end   
   end # context statuses
+  
+  context "subtasks" do
+    it "something" do
+      t = Task.create( :text => 'Something to do', :status => 'todo')
+      t.should have(0).tasks
+      t2 = Task.create( :text => 'Subtask', :status => 'todo' )
+      t.tasks << t2
+      t.save
+      t.should have(1).task
+    end
+  end # context subtasks
 end # describe Task
