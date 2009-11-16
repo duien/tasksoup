@@ -43,7 +43,7 @@ class TaskSoup < Sinatra::Base
 
   get '/projects/:short_name/tasks/new' do |short_name|
     layout = params[:embed].nil? ? true : false
-    haml :'tasks/new', :layout => layout, :locals => { :task => Task.new, :short_name => short_name, :statuses => Task.chained_statuses }
+    haml :'tasks/new', :layout => layout, :locals => { :task => Task.new, :short_name => short_name, :statuses => Status.chained }
   end
 
   post '/projects/:short_name/tasks/new' do |short_name|

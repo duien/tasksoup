@@ -1,5 +1,5 @@
-%li.task{ :class => task.status }
-  .status= task.status
+%li.task{ :class => task.status.name }
+  .status= task.status.name
   .text
     :maruku
       #{task.text}

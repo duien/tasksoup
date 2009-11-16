@@ -4,6 +4,7 @@ $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 require 'mongo_mapper'
 require 'models/project'
 require 'models/task'
+require 'models/status'
 
 Spec::Runner.configure do |config|
   Mongo::Connection.new.drop_database('tasksoup_test')
