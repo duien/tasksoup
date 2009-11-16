@@ -17,21 +17,24 @@ ul
     :width = 85%
     .content
       :padding 10px
-      .task
-        :clear left
-        .status
-          :float left
-          :font-family monospace
-          :font-weight bold
-          :padding 0 3px
-          :margin-right 3px
-          :margin-top 3px
-          :width 5em
-          :text-align right
-          :-moz-border-radius 2px
-          :-webkit-border-radius 2px
-        .text
-          :float left
+      .task_list
+        ul
+          :padding-left 2em
+        .task
+          :clear left
+          .status
+            :float left
+            :font-family monospace
+            :font-weight bold
+            :padding 0 3px
+            :margin-right 3px
+            :margin-top 3px
+            :width 5em
+            :text-align right
+            :-moz-border-radius 2px
+            :-webkit-border-radius 2px
+          .text
+            :float left
       #add-task-form
         :clear left
 #footer

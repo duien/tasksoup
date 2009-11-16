@@ -1,5 +1,5 @@
 -# %h2= @project.title
-%ul
+%ul.task_list
   - for task in @project.tasks
     = haml :'tasks/show', :layout => false, :locals => { :task => task }
 #add-task-form
