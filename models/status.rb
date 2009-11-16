@@ -12,6 +12,17 @@ class Status
   def self.chained
     CHAINS.inject({}){ |res,chain| res[chain] = find_all_by_chain(chain, :order => 'position'); res }
   end
+  
+  def succ
+    case type
+    when 'active'
+      Status.first( :chain => chain, :type => 'inactive', :order => 'position' )
+    when 'pending'
+      Status.first( :chain => chain, :type => 'active', :order => 'position' )
+    when 'inactive'
+      self
+    end
+  end
 end
 
 ## All possible task statuses
