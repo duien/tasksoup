@@ -6,5 +6,6 @@ require 'models/project'
 require 'models/task'
 
 Spec::Runner.configure do |config|
-  
+  Mongo::Connection.new.drop_database('tasksoup_test')
+  MongoMapper.database = 'tasksoup_test'
 end
