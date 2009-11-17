@@ -19,9 +19,8 @@ ul
     :width = 85%
     .content
       :padding 10px
-      .task_list
-        ul
-          :padding-left 2em
+      ul.task_list
+        :clear left
         .task
           :clear left
           .status
@@ -37,6 +36,8 @@ ul
             :-webkit-border-radius 2px
           .text
             :float left
+          ul.task_list
+            :padding-left 2em
       #add-task
         :clear left
         #add-task-form
@@ -56,48 +57,48 @@ h2
 /* Task List Styling */
 /*********************/
 
-.todo .status
+.todo > .status
   :background #d74d3d
   :color #ffffff
-.later .status
+.later > .status
   :background #f0c76f
   :color #000000
-.cancel .status
+.cancel > .status
   :background #ffffff
   :color #999999
-.waiting .status
+.waiting > .status
   :background #999999
   :color #ffffff
-.done .status
+.done > .status
   :background #ffffff
   :color #999999
-.bug .status
+.bug > .status
   :background #519650
   :color #ffffff
-.smell .status
+.smell > .status
   :background #a4c262
   :color #ffffff
-.report .status
+.report > .status
   :background #a4c262
   :color #ffffff
-.fixed .status
+.fixed > .status
   :background #ffffff
   :color #519650
-.invalid .status
+.invalid > .status
   :background #ffffff
   :color #a4c262
-.question .status
+.question > .status
   :background #597ba6
   :color #ffffff
-.answer .status
+.answer > .status
   :background #ffffff
   :color #597ba6
 
 .done, .fixed
-  .text
+  & > .text
     :color #999999
     :text-decoration line-through
 .cancel, .answer, .invalid
-  .text
+  & > .text
     :color #999999
     :font-style italic
