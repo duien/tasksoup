@@ -45,7 +45,7 @@ function bind_task_actions( what ){
 }
 
 function add_and_bind_form( to, project_id ) {
-  to.load("/projects/" + project_id + "/tasks/new?embed=true", function() { 
+  to.load("/tasks/new?embed=true", function() { 
     $("form").ajaxForm({ success: function(data, textStatus){
       $("#main .content").html( data );
     }});
