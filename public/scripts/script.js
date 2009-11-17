@@ -1,5 +1,46 @@
 $(function(){
+  // Load the sidebar
   $("#sidebar .content").load("/projects?embed=true");
+  
+  // Set up editing
+  $("li.task").each(function(){
+    var task_id = $(this).attr('id');
+    
+    // Editable text
+    $("div.text", this).editable('/tasks/'+task_id+'/edit', {
+      tooltip: 'Double-click to edit.',
+      event: 'dblclick',
+      name: 'task[text]',
+      submit: 'Submit',
+      type: 'textarea',
+      width: 500,
+      loadurl: '/tasks/'+task_id+'?only=text'
+    });
+    
+    
+    var timer;
+    
+    // Successor status
+    // $("div.status", this).click(function(){ 
+    //   timer = setTimeout( "$(this).load('/tasks/'"+task_id+"'/edit', { 'task[status]': 'succ' }, function(value){ $(this).parent().attr('class', 'task '+value); })", 500);
+    // });
+    // 
+    // $("div.status", this).dblclick(function(){
+    //   clearTimeout(timer);
+    // });
+    
+    // Editable status
+    $("div.status", this).editable('/tasks/'+task_id+'/edit', {
+      event: 'dblclick',
+      name: 'task[status_id]',
+      type: 'select',
+      loadurl: '/statuses/chained',
+      onblur: 'submit',
+      callback: function(value, options){ 
+        $(this).parent().attr('class', 'task '+value);
+      }
+    });
+  });
 });
 
 function add_and_bind_form( to, project_id ) {

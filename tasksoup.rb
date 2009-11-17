@@ -52,6 +52,37 @@ class TaskSoup < Sinatra::Base
     success = @project.save
     haml :'projects/show', :layout => false
   end
+  
+  get '/tasks/:id' do |id|
+    @task = Task.find_by_id( id )
+    if params[:only]
+       content_type :json
+      @task[params[:only]]
+    else
+      haml :'tasks/show', :layout => false, :locals => { :task => @task }
+    end
+  end
+  
+  post '/tasks/:id/edit' do |id|
+    @task = Task.find_by_id( id )
+    if params['task']['status'] == 'succ'
+      @task.status = @task.status.succ
+      @task.save
+      @task.status.name
+    else
+      @task.update_attributes( params['task'] )
+      if params['task']['text']
+        haml :'util/maruku', :layout => false, :locals => { :text => params['task']['text'] }
+      elsif params['task']['status_id']
+        @task.status.name
+      end
+    end
+  end
+  
+  get '/statuses/chained' do
+    content_type :json
+    Status.all.inject({}){ |res, s| res[s.id] = s.name; res }.to_json
+  end
 
   # css
   get '/:style.css' do |style|
