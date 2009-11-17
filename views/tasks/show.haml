@@ -1,4 +1,6 @@
 %li.task{ :class => task.status.name, :id => task.id }
+  .controls
+    %a.edit edit
   .status= task.status.name
   .text
     :maruku

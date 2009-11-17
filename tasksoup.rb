@@ -41,41 +41,45 @@ class TaskSoup < Sinatra::Base
     haml :'projects/show', :layout => layout
   end
 
-  get '/projects/:short_name/tasks/new' do |short_name|
+  get '/tasks/new' do
+    @submit_to = '/tasks/new'
     layout = params[:embed].nil? ? true : false
-    haml :'tasks/new', :layout => layout, :locals => { :task => Task.new, :short_name => short_name, :statuses => Status.chained }
+    haml :'tasks/new', :layout => layout, :locals => { :task => Task.new( params['task']), :statuses => Status.chained }
   end
 
-  post '/projects/:short_name/tasks/new' do |short_name|
-    @project = Project.find_by_short_name( short_name )
-    @project.tasks << Task.new( params[:task] )
-    success = @project.save
-    haml :'projects/show', :layout => false
+  post '/tasks/new' do
+    task = Task.new( params['task'] )
+    haml :'tasks/show', :layout => false, :locals => { :task => task }
   end
   
   get '/tasks/:id' do |id|
-    @task = Task.find_by_id( id )
+    task = Task.find_by_id( id )
     if params[:only]
        content_type :json
-      @task[params[:only]]
+      task[params[:only]]
     else
-      haml :'tasks/show', :layout => false, :locals => { :task => @task }
+      haml :'tasks/show', :layout => false, :locals => { :task => task }
     end
   end
   
+  get '/tasks/:id/edit' do |id|
+    @submit_to = "/tasks/#{id}/edit"
+    task = Task.find_by_id( id )
+    haml :'tasks/new', :layout => false, :locals => { :task => task, :statuses => Status.chained }
+  end
+  
   post '/tasks/:id/edit' do |id|
-    @task = Task.find_by_id( id )
+    task = Task.find_by_id( id )
     if params['task']['status'] == 'succ'
-      @task.status = @task.status.succ
-      @task.save
-      @task.status.name
+      task.status = task.status.succ
+      task.save
+      task.status.name
+    elsif params['cancel']
+      haml :'tasks/show', :layout => false, :locals => { :task => task }
     else
-      @task.update_attributes( params['task'] )
-      if params['task']['text']
-        haml :'util/maruku', :layout => false, :locals => { :text => params['task']['text'] }
-      elsif params['task']['status_id']
-        @task.status.name
-      end
+      task.parent_id = Mongo::ObjectID.from_string( params['task'].delete('parent_id') ) if params['task']['parent_id']
+      task.update_attributes( params['task'] )
+      haml :'tasks/show', :layout => false, :locals => { :task => task }
     end
   end
   
