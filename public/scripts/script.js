@@ -8,8 +8,20 @@ $(function(){
   });
   
   // Toggle status filters
-  $("#filter span.status").toggle( function(){ $(this).css('border-color', '#000') },
-                                   function(){ $(this).css('border-color', '#eee') });
+  $("#filter span.status").toggle( function(){ $(this).addClass('selected') },
+                                   function(){ $(this).removeClass('selected') });
+  $("#filter span.type").toggle( function(){ $(this).css('border-color', '#000');
+                                             $("#filter").find("."+$(this).text()+"_type span.status").addClass('selected_type');
+                                            },
+                                 function(){ $(this).css('border-color', '#eee');
+                                             $("#filter").find("."+$(this).text()+"_type span.status").removeClass('selected_type');
+                                            });
+  $("#filter span.chain").toggle( function(){ $(this).css('border-color', '#000');
+                                              $("#filter").find("."+$(this).text()+"_chain span.status").addClass('selected_chain');
+                                             },
+                                  function(){ $(this).css('border-color', '#eee');
+                                              $("#filter").find("."+$(this).text()+"_chain span.status").removeClass('selected_chain');
+                                             });
 });
 
 function bind_task_actions( what ){

@@ -25,7 +25,7 @@ ul
     :padding 10px
     :padding-left 23px
   ul.statuses > li
-    & > span.chain
+    span.chain
       :float left
       :font-weight bold
       :display block
@@ -35,14 +35,14 @@ ul
       :width 5em
       :text-align right
       :clear left
-    & > ul.chain
+    ul.chain
       :font-weight normal
       :display inline
       :float left
-      & > li
+      li
         // :display inline
         :float left
-        & > .status
+        .status
           :display block
           :font-family monospace
           :font-weight bold
@@ -54,6 +54,31 @@ ul
           :-moz-border-radius 4px
           :-webkit-border-radius 4px
           :border 2px solid #eee
+  table.statuses
+    .chain, .type, .status
+      :display block
+      :font-family monospace
+      :width 5em
+      :padding 0 3px
+      :-moz-border-radius 4px
+      :-webkit-border-radius 4px
+      :border 2px solid #eee
+      :text-align center
+    .chain
+      :background #ddd
+      //:text-align right
+    .type
+      :background #ddd
+    .types td
+      :text-align center
+    .status
+      :font-weight bold
+      &.selected_type
+        :border-color #666
+      &.selected_chain
+        :border-color #666
+      &.selected
+        :border-color #000
 #body
   :clear both
   :background #eee

@@ -2,7 +2,7 @@ class Status
   include MongoMapper::Document
   
   CHAINS = [ 'task', 'bug', 'question', 'note' ]
-  TYPES = [ 'active', 'pending', 'inactive' ]
+  TYPES = [ 'pending', 'active', 'inactive', 'info' ]
   
   key :name, String, :required => true, :unique => true
   key :chain, String,  :required => true, :within => CHAINS

@@ -1,9 +1,26 @@
-%ul.statuses
-  - for chain, statuses in Status.chained
-    %li
-      %span.chain= chain
-      %ul.chain
-        - for status in statuses
-          %li{ :class => status.name }
-            %span.status
-              = status.name
+%table.statuses{ :cellpadding => 0, :cellspacing => 2, :border => 0 }
+  :ruby
+    status_table = Hash.new{ |h,k| h[k] = Hash.new{ |hh,kk| hh[kk] = [] } }
+    Status::CHAINS.each do |chain|
+      Status::TYPES.each do |type|
+        statuses = Status.all( :chain => chain, :type => type, :order => 'position' )
+        status_table[chain][type] = statuses.collect{ |s| s.name } if statuses
+      end
+    end
+    type_counts = {}
+    Status::TYPES.each{ |type| type_counts[type] = status_table.collect{ |chain, type_table| type_table[type].length }.max }
+  %tr.types
+    %td
+    - for type in Status::TYPES
+      %td{ :colspan => type_counts[type],
+           :class => "#{type}_type" }
+        %span.type= type
+  - for chain in Status::CHAINS
+    %tr{ :class => "#{chain}_chain" }
+      %td
+        %span.chain= chain
+      - for type in Status::TYPES
+        - type_counts[type].times do |i|
+          %td{ :class => [ "#{type}_type", status_table[chain][type][i] ].join(' ') }
+            - if status_table[chain][type][i]
+              %span.status= status_table[chain][type][i]
