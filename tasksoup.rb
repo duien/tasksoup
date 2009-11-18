@@ -41,6 +41,14 @@ class TaskSoup < Sinatra::Base
     haml :'projects/show', :layout => layout
   end
   
+  get '/projects/:short_name/tasks/new' do |short_name|
+    @submit_to = '/tasks/new'
+    layout = params[:embed].nil? ? true : false
+    task = Task.new
+    task.parent = Project.find_by_short_name(short_name)
+    haml :'tasks/new', :layout => layout, :locals => { :task => task, :statuses => Status.chained }
+  end
+  
   get '/tasks' do
     layout = params[:embed].nil? ? true : false
     find_params = {}
