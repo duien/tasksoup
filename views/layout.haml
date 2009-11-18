@@ -1,6 +1,6 @@
 !!!
 %head
-  %title= @title || 'TaskSoup'
+  %title= 'TaskSoup' + @title.to_s
   %link{ :rel => 'stylesheet', :type => 'text/css', :href => '/style.css' }/
   %script{ :type => 'text/javascript', :src=> '/scripts/jquery-1.3.2.js' }
   %script{ :type => 'text/javascript', :src=> '/scripts/jquery.form.js' }
@@ -8,10 +8,15 @@
   %script{ :type => 'text/javascript', :src=> '/scripts/script.js' }
 %body
   #header
-    %h1= @title || "TaskSoup"
+    %h1
+      %a{ :href => '/projects' } TaskSoup
+      = @title
+  #filter
+    .content
+      = haml :'util/filters', :layout => false
   #body
-    #sidebar
-      .content
+    -# #sidebar
+      -# .content
     #main
       .content
         = yield

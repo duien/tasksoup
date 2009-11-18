@@ -4,10 +4,12 @@ $(function(){
   
   // Set up editing
   $("li.task").each(function(){
-    
     bind_task_actions($(this));
-    
   });
+  
+  // Toggle status filters
+  $("#filter span.status").toggle( function(){ $(this).css('border-color', '#000') },
+                                   function(){ $(this).css('border-color', '#eee') });
 });
 
 function bind_task_actions( what ){

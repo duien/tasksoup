@@ -1,0 +1,9 @@
+%ul.statuses
+  - for chain, statuses in Status.chained
+    %li
+      %span.chain= chain
+      %ul.chain
+        - for status in statuses
+          %li{ :class => status.name }
+            %span.status
+              = status.name

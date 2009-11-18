@@ -1,6 +1,8 @@
 body, div, p, ul, li, h1, h2, h3, h4, h5, h6
   :margin 0
   :padding 0
+body
+  :background #eee
 ul
   :list-style-type none
 .add_link
@@ -15,14 +17,56 @@ ul
   :padding 10px
   :border-bottom 3px solid #999
   :color #999
+  :background #fff
+#filter
+  // :border-bottom 3px solid #999
+  :background #eee
+  .content
+    :padding 10px
+    :padding-left 23px
+  ul.statuses > li
+    & > span.chain
+      :float left
+      :font-weight bold
+      :display block
+      :padding 0 3px
+      :margin-right 3px
+      :margin-top 3px
+      :width 5em
+      :text-align right
+      :clear left
+    & > ul.chain
+      :font-weight normal
+      :display inline
+      :float left
+      & > li
+        // :display inline
+        :float left
+        & > .status
+          :display block
+          :font-family monospace
+          :font-weight bold
+          :padding 0 3px
+          :margin-right 3px
+          :margin-top 3px
+          :width 5em
+          :text-align center
+          :-moz-border-radius 4px
+          :-webkit-border-radius 4px
+          :border 2px solid #eee
 #body
+  :clear both
+  :background #eee
   #sidebar
     :float right
     :width 15%
     .content
       :padding 10px
   #main
+    :margin-left 10px
+    :background #fff
     :width = 85%
+    :border 3px solid #999
     .content
       :padding 10px
       ul.task_list
@@ -60,7 +104,7 @@ ul
 #footer
   :clear both
   :padding 10px
-  :border-top 3px solid #999
+  // :border-top 3px solid #999
   :color #999
 
 h2
@@ -106,6 +150,9 @@ h2
 .answer > .status
   :background #ffffff
   :color #597ba6
+.note > .status
+  :background #ffffff
+  :color #000000
 
 .done, .fixed
   & > .text
