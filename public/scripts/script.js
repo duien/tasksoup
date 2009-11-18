@@ -45,9 +45,10 @@ function bind_task_actions( what ){
 }
 
 function add_and_bind_form( to, project_id ) {
-  to.load("/tasks/new?embed=true", function() { 
+  to.load("/projects/"+project_id+"/tasks/new?embed=true", function() { 
     $("form").ajaxForm({ success: function(data, textStatus){
-      $("#main .content").html( data );
+      //$(this).parent().parent().siblings("ul.task_list").prepend( data );
+      //bind_task_actions( $(this).parent().parent().siblings("ul.task_list").children("li.task:last") )
     }});
     $("#task_expand").click(function(){
       var input = $(this).siblings("#task_text");
