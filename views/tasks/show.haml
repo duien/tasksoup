@@ -1,10 +1,18 @@
 %li.task{ :class => task.status.name, :id => task.id }
+  - if @show_parent
+    .parent
+      - case task.parent_type
+      - when 'Task'
+        = task.parent.text if @hide_subtasks
+      - when 'Project'
+        = task.parent.title
   .controls
     %a.edit edit
   .status= task.status.name
   .text
     :maruku
       #{task.text}
-  %ul.task_list
-    - for task in task.tasks
-      = haml :'tasks/show', :layout => false, :locals => { :task => task }
+  - if not @hide_subtasks
+    %ul.task_list
+      - for task in task.tasks
+        = haml :'tasks/show', :layout => false, :locals => { :task => task }

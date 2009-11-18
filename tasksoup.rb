@@ -40,6 +40,16 @@ class TaskSoup < Sinatra::Base
     @title = ' / ' + @project.title
     haml :'projects/show', :layout => layout
   end
+  
+  get '/tasks' do
+    layout = params[:embed].nil? ? true : false
+    find_params = {}
+    find_params[:parent_type] = 'Project' unless params[:nested] = false
+    find_params[:status_id] = params[:status].collect{ |s| Status.find_by_name(s)._id } if params[:status]
+    @show_parent = true
+    @tasks = Task.all( find_params )
+    haml :'tasks/list', :layout => layout
+  end
 
   get '/tasks/new' do
     @submit_to = '/tasks/new'

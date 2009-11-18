@@ -1,0 +1,3 @@
+%ul.task_list
+  - for task in @tasks
+    = haml :'tasks/show', :layout => false, :locals => { :task => task }
