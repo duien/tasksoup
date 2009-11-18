@@ -66,7 +66,9 @@ class TaskSoup < Sinatra::Base
   end
 
   post '/tasks/new' do
-    task = Task.new( params['task'] )
+    params['task']['parent_id'] = Mongo::ObjectID.from_string params['task']['parent_id']
+    params['task']['status_id'] = Mongo::ObjectID.from_string params['task']['status_id']
+    task = Task.create( params['task'] )
     haml :'tasks/show', :layout => false, :locals => { :task => task }
   end
   

@@ -3,9 +3,11 @@
     - for chain_name, chain_statuses in statuses
       %optgroup{ :label =>  chain_name }
         - for status in chain_statuses
-          %option{ :value => status.id, :selected => task.status ? status.name == task.status.name : status.name == 'todo' }= status.name
+          %option{ :value => status.id, 
+                   :selected => task.status.nil? ? (status.name == 'todo') : (status.name == task.status.name) }= status.name
   %input{ :name => 'task[text]', :type => 'text', :id => 'task_text', :value => task.text }
   %input{ :name => 'task[parent_id]', :type => 'hidden', :id => 'task_parent_id', :value => task.parent_id }
+  %input{ :name => 'task[parent_type]', :type => 'hidden', :id => 'task_parent_type', :value => task.parent_type }
   %input{ :name => 'save', :type => 'submit', :value => 'Save', :id => 'task_submit' }
   %input{ :type => 'button', :value => 'Expand', :id => 'task_expand' }
   %input{ :name => 'cancel', :type => 'submit', :value => 'Cancel', :id => 'task_cancel' }
