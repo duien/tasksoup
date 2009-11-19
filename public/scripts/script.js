@@ -7,21 +7,43 @@ $(function(){
     bind_task_actions($(this));
   });
   
+  var task_filter_params = [ "embed=true" ]
+  
   // Toggle status filters
-  $("#filter span.status").toggle( function(){ $(this).addClass('selected') },
-                                   function(){ $(this).removeClass('selected') });
-  $("#filter span.type").toggle( function(){ $(this).css('border-color', '#000');
-                                             $("#filter").find("."+$(this).text()+"_type span.status").addClass('selected_type');
-                                            },
-                                 function(){ $(this).css('border-color', '#eee');
-                                             $("#filter").find("."+$(this).text()+"_type span.status").removeClass('selected_type');
-                                            });
-  $("#filter span.chain").toggle( function(){ $(this).css('border-color', '#000');
-                                              $("#filter").find("."+$(this).text()+"_chain span.status").addClass('selected_chain');
-                                             },
-                                  function(){ $(this).css('border-color', '#eee');
-                                              $("#filter").find("."+$(this).text()+"_chain span.status").removeClass('selected_chain');
-                                             });
+  $("#filter span.status").toggle(
+    function(){
+      $(this).addClass('selected');
+      task_filter_params.push("status[]="+$(this).text())
+      //alert(task_filter_params);
+      $("ul.task_list:first").load('/tasks', task_filter_params.join("&"), function(){
+        $("li.task").each(function(){
+          bind_task_actions($(this));
+        });
+      });
+    },
+    function(){
+      $(this).removeClass('selected');
+      var to_remove = "status[]="+$(this).text();
+      task_filter_params.splice(task_filter_params.indexOf(to_remove), 1);
+      //alert(task_filter_params);
+      $("ul.task_list:first").load('/tasks', task_filter_params.join("&"), function(){
+        $("li.task").each(function(){
+          bind_task_actions($(this));
+        });
+      });
+    });
+  // $("#filter span.type").toggle( function(){ $(this).css('border-color', '#000');
+  //                                            $("#filter").find("."+$(this).text()+"_type span.status").addClass('selected_type');
+  //                                           },
+  //                                function(){ $(this).css('border-color', '#eee');
+  //                                            $("#filter").find("."+$(this).text()+"_type span.status").removeClass('selected_type');
+  //                                           });
+  // $("#filter span.chain").toggle( function(){ $(this).css('border-color', '#000');
+  //                                             $("#filter").find("."+$(this).text()+"_chain span.status").addClass('selected_chain');
+  //                                            },
+  //                                 function(){ $(this).css('border-color', '#eee');
+  //                                             $("#filter").find("."+$(this).text()+"_chain span.status").removeClass('selected_chain');
+  //                                            });
 });
 
 function bind_task_actions( what ){
