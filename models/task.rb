@@ -5,10 +5,10 @@ class Task
   key :text, String, :required => true
   key :tags, Array
   key :created_at, Time
-  key :status_id, Mongo::ObjectID
+  key :status_id, ObjectId #Mongo::ObjectID
   
   # Association keys
-  key :parent_id, Mongo::ObjectID
+  key :parent_id, ObjectId # Mongo::ObjectID
   key :parent_type
   
   #Associations

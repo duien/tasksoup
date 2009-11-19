@@ -66,8 +66,8 @@ class TaskSoup < Sinatra::Base
   end
 
   post '/tasks/new' do
-    params['task']['parent_id'] = Mongo::ObjectID.from_string params['task']['parent_id']
-    params['task']['status_id'] = Mongo::ObjectID.from_string params['task']['status_id']
+    # params['task']['parent_id'] = Mongo::ObjectID.from_string params['task']['parent_id']
+    # params['task']['status_id'] = Mongo::ObjectID.from_string params['task']['status_id']
     task = Task.create( params['task'] )
     haml :'tasks/show', :layout => false, :locals => { :task => task }
   end
@@ -97,7 +97,8 @@ class TaskSoup < Sinatra::Base
     elsif params['cancel']
       haml :'tasks/show', :layout => false, :locals => { :task => task }
     else
-      task.parent_id = Mongo::ObjectID.from_string( params['task'].delete('parent_id') ) if params['task']['parent_id']
+      # params['task']['parent_id'] = Mongo::ObjectID.from_string params['task']['parent_id']
+      # params['task']['status_id'] = Mongo::ObjectID.from_string params['task']['status_id']
       task.update_attributes( params['task'] )
       haml :'tasks/show', :layout => false, :locals => { :task => task }
     end
